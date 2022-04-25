@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import AddContact from "../addContact/AddContact";
 import "./table.scss";
-import data from "../../json/data.json";
+// import data from "../../json/data.json";
 import axios from "axios";
+import Modal from "../modal/Modal";
 
 class Table extends Component {
   constructor(props) {
@@ -12,7 +13,9 @@ class Table extends Component {
       name: "",
       family: "",
       numbers: "",
-      contacts: data,
+      contacts: [],
+      searchedContact: [],
+      isOpen: true,
     };
   }
 
@@ -60,11 +63,20 @@ class Table extends Component {
     });
   };
 
-  contactEditHandler = () => {};
+  contactEditHandler = (e) => {
+    console.log(`${e} should edited`);
+    this.setState((prevState) => {
+      return {
+        isOpen: !prevState,
+      };
+    });
+  };
 
   componentDidMount() {
-    axios.get("../../json/data.json").then((res) => {
-      console.log(res);
+    axios.get("http://localhost:8880").then((res) => {
+      this.setState({
+        contacts: res.data,
+      });
     });
     let lastContact = localStorage.getItem("contact");
     this.setState({
@@ -89,6 +101,7 @@ class Table extends Component {
           </thead>
           <tbody>
             <AddContact
+              contactEditHandler={this.contactEditHandler}
               contactDeleteHandler={this.contactDeleteHandler}
               inputsChangedHandler={this.inputsChangedHandler}
               addContactHandler={this.addContactHandler}
@@ -100,6 +113,10 @@ class Table extends Component {
             />
           </tbody>
         </table>
+        <Modal
+          isOpen={this.state.isOpen}
+          contactEditHandler={this.contactEditHandler}
+        />
       </div>
     );
   }

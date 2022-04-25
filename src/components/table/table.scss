@@ -7,6 +7,10 @@
 .addButton {
   width: 100%;
 }
-td {
-    // text-align: center;
+table {
+  padding: 1em;
+  margin: 1em;
+  border-radius: 5px;
+  border: 1px solid;
+  border-collapse: collapse;
 }

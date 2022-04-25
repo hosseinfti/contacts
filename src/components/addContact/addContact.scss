@@ -1,0 +1,10 @@
+.contactItem {
+  border-bottom: 1px solid;
+  td {
+      padding: 10px;
+    }
+}
+
+.contactItem:last-child {
+  border-bottom: none;
+}
