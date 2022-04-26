@@ -15,7 +15,11 @@ class Table extends Component {
       numbers: "",
       contacts: [],
       searchedContact: [],
-      isOpen: true,
+      isOpen: false,
+      editId: "",
+      editName: "",
+      editFamily: "",
+      editNumbers: "",
     };
   }
 
@@ -63,11 +67,30 @@ class Table extends Component {
     });
   };
 
+  contactSaveEditHandler = () => {
+    let editedList = this.state.contacts.map((i) => {
+      if (i.id === this.state.editId) {
+        i.name = this.state.editName;
+        i.family = this.state.editFamily;
+        i.numbers = this.state.editNumbers;
+      }
+
+      return i;
+    });
+    this.setState({
+      contacts: editedList,
+      isOpen: false,
+    });
+  };
+
   contactEditHandler = (e) => {
-    console.log(`${e} should edited`);
     this.setState((prevState) => {
       return {
-        isOpen: !prevState,
+        isOpen: !prevState.isOpen,
+        editId: e.id,
+        editName: e.name,
+        editFamily: e.family,
+        editNumbers: e.numbers,
       };
     });
   };
@@ -116,6 +139,12 @@ class Table extends Component {
         <Modal
           isOpen={this.state.isOpen}
           contactEditHandler={this.contactEditHandler}
+          contactSaveEditHandler={this.contactSaveEditHandler}
+          inputsChangedHandler={this.inputsChangedHandler}
+          editId={this.state.editId}
+          editName={this.state.editName}
+          editFamily={this.state.editFamily}
+          editNumbers={this.state.editNumbers}
         />
       </div>
     );

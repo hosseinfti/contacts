@@ -55,7 +55,7 @@ class AddContact extends Component {
                 <button onClick={() => this.props.contactDeleteHandler(i.id)}>
                   X
                 </button>
-                <button onClick={() => this.props.contactEditHandler(i.id)}>
+                <button onClick={() => this.props.contactEditHandler(i)}>
                   Edit
                 </button>
               </td>
