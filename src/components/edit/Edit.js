@@ -4,19 +4,18 @@ import React, { Component } from "react";
 class Edit extends Component {
   render() {
     const {
-        inputsChangedHandler,
-        // contacts,
-        editName,
-        editFamily,
-        editNumbers,
-        // editId,
-        contactSaveEditHandler,
-        mulNumHandler,
-        // closeTheModal,
-        // editIsOpen,
-      } = this.props;
+      inputsChangedHandler,
+      contacts,
+      editName,
+      editFamily,
+      editNumbers,
+      editId,
+      contactSaveEditHandler,
+      mulNumHandler,
+      // closeTheModal,
+      // editIsOpen,
+    } = this.props;
     return (
-
       <>
         <div>
           <div>نام</div>
@@ -48,9 +47,25 @@ class Edit extends Component {
               onChange={inputsChangedHandler}
             />
           </div>
-          {/* {contacts.map((i) => {
-              return <div> {i.id === editId} </div>
-          })} */}
+          {contacts.map((i) => {
+            if (i.id === editId) {
+              return (
+                <div key={i.id}>
+                  {i.numbers.map((i) => {
+                    return (
+                      <div
+                        key={i.id}
+                        // id="editNumbers"
+                        // onClick={(e) => inputsChangedHandler(i.numbers)}
+                      >
+                        {i}
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            }
+          })}
         </div>
         <div className="saveModalBTN">
           <button onClick={contactSaveEditHandler}>ذخیره</button>

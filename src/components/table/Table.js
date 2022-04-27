@@ -59,7 +59,7 @@ class Table extends Component {
     // console.log(this.state.contacts);
     let temp = this.state.contacts.map((i) => {
       if (i.id === this.state.editId) {
-        i.numbers.push(this.state.editNumbers[0])
+        i.numbers.push(this.state.editNumbers)
         return i;
       } else {
         return i;
