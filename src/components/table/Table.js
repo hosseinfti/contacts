@@ -56,15 +56,11 @@ class Table extends Component {
   };
 
   mulNumHandler = () => {
+    // console.log(this.state.contacts);
     let temp = this.state.contacts.map((i) => {
-      console.log(i);
       if (i.id === this.state.editId) {
-        return {
-          id: i.id,
-          name: i.name,
-          family: i.family,
-          numbers: i.numbers.push(this.state.editNumbers[0]),
-        };
+        i.numbers.push(this.state.editNumbers[0])
+        return i;
       } else {
         return i;
       }
