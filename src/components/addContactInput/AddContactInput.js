@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./addContactInput.scss"
+import "./addContactInput.scss";
 
 class AddContactInput extends Component {
   render() {

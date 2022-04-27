@@ -13,11 +13,12 @@ class Table extends Component {
     this.state = {
       name: "",
       family: "",
-      numbers: "",
+      numbers: [],
       contacts: [],
       searchInput: "",
       searchedContact: [],
-      isOpen: false,
+      editIsOpen: false,
+      infoIsOpen: false,
       editId: "",
       editName: "",
       editFamily: "",
@@ -31,7 +32,7 @@ class Table extends Component {
       id: uniqID,
       name: this.state.name,
       family: this.state.family,
-      numbers: this.state.numbers,
+      numbers: [String(this.state.numbers)],
     };
     if (!this.state.name || !this.state.family || !this.state.numbers) {
       alert("تمامی فیلد‌ها پر شود");
@@ -52,6 +53,23 @@ class Table extends Component {
         }
       );
     }
+  };
+
+  mulNumHandler = () => {
+    let temp = this.state.contacts.map((i) => {
+      console.log(i);
+      if (i.id === this.state.editId) {
+        return {
+          id: i.id,
+          name: i.name,
+          family: i.family,
+          numbers: i.numbers.push(this.state.editNumbers[0]),
+        };
+      } else {
+        return i;
+      }
+    });
+    console.log(temp);
   };
 
   inputsChangedHandler = (e) => {
@@ -81,20 +99,21 @@ class Table extends Component {
     });
     this.setState({
       contacts: editedList,
-      isOpen: false,
+      editIsOpen: false,
     });
   };
 
   closeTheModal = () => {
     this.setState({
-      isOpen: false,
+      editIsOpen: false,
+      infoIsOpen: false,
     });
   };
 
   contactEditHandler = (e) => {
     this.setState((prevState) => {
       return {
-        isOpen: !prevState.isOpen,
+        editIsOpen: !prevState.editIsOpen,
         editId: e.id,
         editName: e.name,
         editFamily: e.family,
@@ -102,9 +121,15 @@ class Table extends Component {
       };
     });
   };
+  contactInfoHandler = () => {
+    this.setState((prevState) => {
+      return {
+        infoIsOpen: !prevState.infoIsOpen,
+      };
+    });
+  };
 
   searchKeyHandler = (e, key) => {
-
     let searched = this.state.contacts.filter((i) => {
       return (
         i.numbers.includes(e.target.value) ||
@@ -114,19 +139,17 @@ class Table extends Component {
     });
 
     let timout;
+
     clearTimeout(timout);
     console.log("down");
-    
-      timout = setTimeout(() => {
-        console.log("up");
-        this.setState({
-          searchInput: e.target.value,
-          searchedContact: searched,
-        });
-      }, 1000);
-   
-      
-    
+
+    timout = setTimeout(() => {
+      console.log("up");
+      this.setState({
+        searchInput: e.target.value,
+        searchedContact: searched,
+      });
+    }, 1000);
 
     // switch (key) {
     //   case "up":
@@ -142,7 +165,7 @@ class Table extends Component {
     //   case "down":
     //     clearTimeout(timout);
     //     break;
-        
+
     //   default:
     //     break;
     // }
@@ -150,26 +173,26 @@ class Table extends Component {
 
   componentDidMount() {
     axios.get("http://localhost:8880").then((res) => {
-      let version = localStorage.getItem("version");
+      // let version = localStorage.getItem("version");
       let data = res.data;
-      if (version === data.version) {
-        let lastContact = localStorage.getItem("contact");
-        let t = [];
-        try {
-          t = JSON.parse(lastContact);
-        } catch (e) {}
-        this.setState({
-          contacts: t || [],
-          searchedContact: t || [],
-        });
-      } else {
-        localStorage.setItem("version", data.version);
+      // if (version === data.version) {
+      let lastContact = localStorage.getItem("contact");
+      let t = [];
+      try {
+        t = JSON.parse(lastContact);
+      } catch (e) {}
+      this.setState({
+        contacts: t || [],
+        searchedContact: t || [],
+      });
+      // } else {
+      // localStorage.setItem("version", data.version);
 
-        this.setState({
-          contacts: data.phones,
-          searchedContact: data.phones,
-        });
-      }
+      this.setState({
+        contacts: data.phones,
+        searchedContact: data.phones,
+      });
+      // }
     });
   }
   componentDidUpdate() {
@@ -180,9 +203,10 @@ class Table extends Component {
     return (
       <div className="Container">
         <div className="searchContainer">
-          <div>جست‌جو</div>
+          {/* <div>جست‌جو</div> */}
           <input
             value={this.state.searchInput}
+            placeholder="جست‌جو..."
             id="searchInput"
             onChange={this.inputsChangedHandler}
             onKeyUp={(e) => this.searchKeyHandler(e, "up")}
@@ -208,6 +232,7 @@ class Table extends Component {
               numbers={this.state.numbers}
             />
             <ItemContact
+              contactInfoHandler={this.contactInfoHandler}
               contactEditHandler={this.contactEditHandler}
               contactDeleteHandler={this.contactDeleteHandler}
               contacts={this.state.contacts}
@@ -221,7 +246,8 @@ class Table extends Component {
           </tbody>
         </table>
         <Modal
-          isOpen={this.state.isOpen}
+          contacts={this.state.contacts}
+          editIsOpen={this.state.editIsOpen}
           closeTheModal={this.closeTheModal}
           contactSaveEditHandler={this.contactSaveEditHandler}
           inputsChangedHandler={this.inputsChangedHandler}
@@ -229,6 +255,10 @@ class Table extends Component {
           editName={this.state.editName}
           editFamily={this.state.editFamily}
           editNumbers={this.state.editNumbers}
+          name={this.state.name}
+          family={this.state.family}
+          numbers={this.state.numbers}
+          mulNumHandler={this.mulNumHandler}
         />
       </div>
     );

@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Edit from "../edit/Edit";
+import Info from "../info/Info";
 import "./modal.scss";
 
 class Modal extends Component {
@@ -8,48 +10,53 @@ class Modal extends Component {
     this.state = {};
   }
   render() {
+    const {
+      contacts,
+      name,
+      family,
+      numbers,
+      inputsChangedHandler,
+      editName,
+      editFamily,
+      editNumbers,
+      editId,
+      contactSaveEditHandler,
+      closeTheModal,
+      editIsOpen,
+      infoIsOpen,
+      mulNumHandler,
+    } = this.props;
     return (
       <div
         className={` ${
-          this.props.isOpen ? "modalContainer" : "modalDisplayNone"
+          editIsOpen || infoIsOpen ? "modalContainer" : "modalDisplayNone"
         }`}
       >
         <div className="modalBody">
-          <div>
-            <div>نام</div>
-            <div>
-              <input
-                value={this.props.editName}
-                id="editName"
-                onChange={this.props.inputsChangedHandler}
-              />
-            </div>
-          </div>
-          <div>
-            <div>نام‌خانوادگی</div>
-            <div>
-              <input
-                value={this.props.editFamily}
-                id="editFamily"
-                onChange={this.props.inputsChangedHandler}
-              />
-            </div>
-          </div>
-          <div>
-            <div>شماره‌تلفن</div>
-            <div className="addPhoneContainer">
-              <button>+</button>
-              <input
-                value={this.props.editNumbers}
-                id="editNumbers"
-                onChange={this.props.inputsChangedHandler}
-              />
-            </div>
-          </div>
-          <div className="saveModalBTN">
-            <button onClick={this.props.contactSaveEditHandler}>ذخیره</button>
-          </div>
-          <button onClick={this.props.closeTheModal} className="closeModalBTN">
+          {editIsOpen ? (
+            <Edit
+              editId={editId}
+              contacts={contacts}
+              closeTheModal={closeTheModal}
+              editIsOpen={editIsOpen}
+              contactSaveEditHandler={contactSaveEditHandler}
+              editNumbers={editNumbers}
+              editFamily={editFamily}
+              editName={editName}
+              inputsChangedHandler={inputsChangedHandler}
+              mulNumHandler={mulNumHandler}
+            />
+          ) : infoIsOpen ? (
+            <Info
+              infoIsOpen={infoIsOpen}
+              closeTheModal={closeTheModal}
+              name={name}
+              family={family}
+              numbers={numbers}
+            />
+          ) : null}
+
+          <button onClick={closeTheModal} className="closeModalBTN">
             x
           </button>
         </div>
