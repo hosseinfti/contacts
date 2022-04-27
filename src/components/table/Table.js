@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import AddContact from "../addContact/AddContact";
+import ItemContact from "../itemContact/ItemContact";
 import "./table.scss";
 // import data from "../../json/data.json";
 import axios from "axios";
 import Modal from "../modal/Modal";
+import AddContactInput from "../addContactInput/AddContactInput";
 
 class Table extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class Table extends Component {
       family: "",
       numbers: "",
       contacts: [],
+      searchInput: "",
       searchedContact: [],
       isOpen: false,
       editId: "",
@@ -83,6 +85,12 @@ class Table extends Component {
     });
   };
 
+  closeTheModal = () => {
+    this.setState({
+      isOpen: false,
+    });
+  };
+
   contactEditHandler = (e) => {
     this.setState((prevState) => {
       return {
@@ -95,15 +103,73 @@ class Table extends Component {
     });
   };
 
+  searchKeyHandler = (e, key) => {
+
+    let searched = this.state.contacts.filter((i) => {
+      return (
+        i.numbers.includes(e.target.value) ||
+        i.name.includes(e.target.value) ||
+        i.family.includes(e.target.value)
+      );
+    });
+
+    let timout;
+    clearTimeout(timout);
+    console.log("down");
+    
+      timout = setTimeout(() => {
+        console.log("up");
+        this.setState({
+          searchInput: e.target.value,
+          searchedContact: searched,
+        });
+      }, 1000);
+   
+      
+    
+
+    // switch (key) {
+    //   case "up":
+    //     timout = setTimeout(() => {
+    //       console.log("up");
+    //       this.setState({
+    //         searchInput: e.target.value,
+    //         searchedContact: searched,
+    //       });
+    //     }, 1000);
+    //     break;
+
+    //   case "down":
+    //     clearTimeout(timout);
+    //     break;
+        
+    //   default:
+    //     break;
+    // }
+  };
+
   componentDidMount() {
     axios.get("http://localhost:8880").then((res) => {
-      this.setState({
-        contacts: res.data,
-      });
-    });
-    let lastContact = localStorage.getItem("contact");
-    this.setState({
-      contacts: ("contact", JSON.parse(lastContact)),
+      let version = localStorage.getItem("version");
+      let data = res.data;
+      if (version === data.version) {
+        let lastContact = localStorage.getItem("contact");
+        let t = [];
+        try {
+          t = JSON.parse(lastContact);
+        } catch (e) {}
+        this.setState({
+          contacts: t || [],
+          searchedContact: t || [],
+        });
+      } else {
+        localStorage.setItem("version", data.version);
+
+        this.setState({
+          contacts: data.phones,
+          searchedContact: data.phones,
+        });
+      }
     });
   }
   componentDidUpdate() {
@@ -113,9 +179,20 @@ class Table extends Component {
   render() {
     return (
       <div className="Container">
+        <div className="searchContainer">
+          <div>جست‌جو</div>
+          <input
+            value={this.state.searchInput}
+            id="searchInput"
+            onChange={this.inputsChangedHandler}
+            onKeyUp={(e) => this.searchKeyHandler(e, "up")}
+            // onKeyDown={(e) => this.searchKeyHandler(e, "down")}
+          />
+        </div>
         <table>
           <thead>
             <tr>
+              <td>ردیف</td>
               <th>نام</th>
               <th>نام خانوادگی</th>
               <th>شماره تلفن</th>
@@ -123,12 +200,19 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            <AddContact
+            <AddContactInput
+              addContactHandler={this.addContactHandler}
+              inputsChangedHandler={this.inputsChangedHandler}
+              name={this.state.name}
+              family={this.state.family}
+              numbers={this.state.numbers}
+            />
+            <ItemContact
               contactEditHandler={this.contactEditHandler}
               contactDeleteHandler={this.contactDeleteHandler}
-              inputsChangedHandler={this.inputsChangedHandler}
-              addContactHandler={this.addContactHandler}
               contacts={this.state.contacts}
+              searchedContact={this.state.searchedContact}
+              searchInput={this.state.searchInput}
               name={this.state.name}
               family={this.state.family}
               id={this.state.id}
@@ -138,7 +222,7 @@ class Table extends Component {
         </table>
         <Modal
           isOpen={this.state.isOpen}
-          contactEditHandler={this.contactEditHandler}
+          closeTheModal={this.closeTheModal}
           contactSaveEditHandler={this.contactSaveEditHandler}
           inputsChangedHandler={this.inputsChangedHandler}
           editId={this.state.editId}

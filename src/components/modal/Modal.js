@@ -3,11 +3,9 @@ import "./modal.scss";
 
 class Modal extends Component {
   constructor(props) {
-    super(props) 
+    super(props);
 
-    this.state = {
-
-    }
+    this.state = {};
   }
   render() {
     return (
@@ -16,27 +14,45 @@ class Modal extends Component {
           this.props.isOpen ? "modalContainer" : "modalDisplayNone"
         }`}
       >
-        <div>
-          <div>نام</div>
-          <input value={this.props.editName} id="editName" onChange={this.props.inputsChangedHandler} />
-        </div>
-        <div>
-          <div>نام‌خانوادگی</div>
-          <input value={this.props.editFamily} id="editFamily" onChange={this.props.inputsChangedHandler} />
-        </div>
-        <div>
-          <div>شماره‌تلفن</div>
+        <div className="modalBody">
           <div>
-            <button>+</button>
-            <input value={this.props.editNumbers} id="editNumbers" onChange={this.props.inputsChangedHandler} />
+            <div>نام</div>
+            <div>
+              <input
+                value={this.props.editName}
+                id="editName"
+                onChange={this.props.inputsChangedHandler}
+              />
+            </div>
           </div>
+          <div>
+            <div>نام‌خانوادگی</div>
+            <div>
+              <input
+                value={this.props.editFamily}
+                id="editFamily"
+                onChange={this.props.inputsChangedHandler}
+              />
+            </div>
+          </div>
+          <div>
+            <div>شماره‌تلفن</div>
+            <div className="addPhoneContainer">
+              <button>+</button>
+              <input
+                value={this.props.editNumbers}
+                id="editNumbers"
+                onChange={this.props.inputsChangedHandler}
+              />
+            </div>
+          </div>
+          <div className="saveModalBTN">
+            <button onClick={this.props.contactSaveEditHandler}>ذخیره</button>
+          </div>
+          <button onClick={this.props.closeTheModal} className="closeModalBTN">
+            x
+          </button>
         </div>
-        <div>
-          <button onClick={this.props.contactSaveEditHandler}>ذخیره</button>
-        </div>
-        <button onClick={this.props.contactEditHandler} className="closeModal">
-          x
-        </button>
       </div>
     );
   }

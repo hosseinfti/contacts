@@ -1,0 +1,36 @@
+.contactItem {
+  border-bottom: 1px solid;
+  td {
+    padding: 10px;
+  }
+}
+.contactItem:last-child td {
+  padding-bottom: 0px !important;
+}
+
+.contactItem:last-child {
+  border-bottom: none;
+}
+.editBTN {
+  margin-right: 4px;
+}
+.itemBTNS {
+  padding-inline: 0px !important;
+  display: flex;
+  flex-wrap: nowrap;
+
+  button {
+    width: 35px;
+    box-shadow: 0px 1px 4px -2px;
+  }
+}
+.addButton {
+  box-shadow: 0px 1px 4px -2px;
+}
+
+.noResult {
+  text-align: center;
+  td {
+    padding-top: 15px;
+  }
+}
