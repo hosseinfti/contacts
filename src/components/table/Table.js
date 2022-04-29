@@ -65,8 +65,11 @@ class Table extends Component {
         return i;
       }
     });
-    console.log(temp);
+    this.setState({
+      contacts: temp
+    })
   };
+
 
   inputsChangedHandler = (e) => {
     this.setState({
@@ -84,11 +87,11 @@ class Table extends Component {
   };
 
   contactSaveEditHandler = () => {
-    let editedList = this.state.contacts.map((i) => {
+    let editedList = this.state.contacts.map((i,index) => {
       if (i.id === this.state.editId) {
         i.name = this.state.editName;
         i.family = this.state.editFamily;
-        i.numbers = this.state.editNumbers;
+        i.numbers[index] = this.state.editNumbers;
       }
 
       return i;
@@ -113,7 +116,7 @@ class Table extends Component {
         editId: e.id,
         editName: e.name,
         editFamily: e.family,
-        editNumbers: e.numbers,
+        editNumbers: e.numbers[0],
       };
     });
   };
@@ -166,6 +169,20 @@ class Table extends Component {
     //     break;
     // }
   };
+
+  changeOtherNum = (item1,index1) => {
+    console.log(item1,index1);
+
+    // this.state.contacts.map( (item2,index2) => {
+    //  if (item2.id === editId) {
+       
+    //  }
+    // })
+
+    this.setState({
+      editNumbers : item1,
+    })
+  }
 
   componentDidMount() {
     axios.get("http://localhost:8880").then((res) => {
@@ -255,6 +272,7 @@ class Table extends Component {
           family={this.state.family}
           numbers={this.state.numbers}
           mulNumHandler={this.mulNumHandler}
+          changeOtherNum={this.changeOtherNum}
         />
       </div>
     );

@@ -25,6 +25,7 @@ class Modal extends Component {
       editIsOpen,
       infoIsOpen,
       mulNumHandler,
+      changeOtherNum,
     } = this.props;
     return (
       <div
@@ -45,6 +46,7 @@ class Modal extends Component {
               editName={editName}
               inputsChangedHandler={inputsChangedHandler}
               mulNumHandler={mulNumHandler}
+              changeOtherNum={changeOtherNum}
             />
           ) : infoIsOpen ? (
             <Info

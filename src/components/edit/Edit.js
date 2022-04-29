@@ -2,6 +2,16 @@ import React, { Component } from "react";
 // import Modal from "../modal/Modal";
 
 class Edit extends Component {
+
+
+
+  // changeOtherNum = (e) => {
+  //   this.setState({
+  //     editNumbers: 
+  //   })
+  // }
+
+
   render() {
     const {
       inputsChangedHandler,
@@ -12,6 +22,7 @@ class Edit extends Component {
       editId,
       contactSaveEditHandler,
       mulNumHandler,
+      changeOtherNum,
       // closeTheModal,
       // editIsOpen,
     } = this.props;
@@ -51,9 +62,10 @@ class Edit extends Component {
             if (i.id === editId) {
               return (
                 <div key={i.id}>
-                  {i.numbers.map((i) => {
+                  {i.numbers.map((i,index) => {
                     return (
                       <div
+                        onClick={() => changeOtherNum(i,index)}
                         key={i.id}
                         // id="editNumbers"
                         // onClick={(e) => inputsChangedHandler(i.numbers)}
