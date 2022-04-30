@@ -1,10 +1,10 @@
-import './App.scss';
-import Table from './components/table/Table';
+import "./App.scss";
+import Routing from "./components/routing/Routing";
 
 function App() {
   return (
     <div className="App">
-      <Table />
+      <Routing />
     </div>
   );
 }

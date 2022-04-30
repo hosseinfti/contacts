@@ -27,7 +27,6 @@ class ItemContact extends Component {
         {finalList === ""
           ? noResult
           : finalList.map((i, index) => {
-            console.log(finalList);
               return (
                 <tr className="contactItem" id={i.id} key={i.id}>
                   <td>{String(index + 1).padStart(2, "0")}).</td>

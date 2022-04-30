@@ -23,6 +23,7 @@ class Table extends Component {
       editName: "",
       editFamily: "",
       editNumbers: "",
+      editIndexNumbers: "",
     };
   }
 
@@ -56,20 +57,23 @@ class Table extends Component {
   };
 
   mulNumHandler = () => {
-    // console.log(this.state.contacts);
     let temp = this.state.contacts.map((i) => {
       if (i.id === this.state.editId) {
-        i.numbers.push(this.state.editNumbers)
+        let exsistIndex = i.numbers.indexOf(this.state.editNumbers);
+        if (exsistIndex === -1) {
+          i.numbers.push(this.state.editNumbers);
+        } else {
+          alert("شماره تکراری است");
+        }
         return i;
       } else {
         return i;
       }
     });
     this.setState({
-      contacts: temp
-    })
+      contacts: temp,
+    });
   };
-
 
   inputsChangedHandler = (e) => {
     this.setState({
@@ -87,11 +91,11 @@ class Table extends Component {
   };
 
   contactSaveEditHandler = () => {
-    let editedList = this.state.contacts.map((i,index) => {
+    let editedList = this.state.contacts.map((i, index) => {
       if (i.id === this.state.editId) {
         i.name = this.state.editName;
         i.family = this.state.editFamily;
-        i.numbers[index] = this.state.editNumbers;
+        i.numbers[this.state.editIndexNumbers] = this.state.editNumbers;
       }
 
       return i;
@@ -170,42 +174,40 @@ class Table extends Component {
     // }
   };
 
-  changeOtherNum = (item1,index1) => {
-    console.log(item1,index1);
-
+  changeOtherNum = (item1, index1) => {
+    this.setState({
+      editNumbers: item1,
+      editIndexNumbers: index1,
+    });
     // this.state.contacts.map( (item2,index2) => {
     //  if (item2.id === editId) {
-       
+
     //  }
     // })
-
-    this.setState({
-      editNumbers : item1,
-    })
-  }
+  };
 
   componentDidMount() {
     axios.get("http://localhost:8880").then((res) => {
-      // let version = localStorage.getItem("version");
+      let version = localStorage.getItem("version");
       let data = res.data;
-      // if (version === data.version) {
-      let lastContact = localStorage.getItem("contact");
-      let t = [];
-      try {
-        t = JSON.parse(lastContact);
-      } catch (e) {}
-      this.setState({
-        contacts: t || [],
-        searchedContact: t || [],
-      });
-      // } else {
-      // localStorage.setItem("version", data.version);
+      if (version === data.version) {
+        let lastContact = localStorage.getItem("contact");
+        let t = [];
+        try {
+          t = JSON.parse(lastContact);
+        } catch (e) {}
+        this.setState({
+          contacts: t || [],
+          searchedContact: t || [],
+        });
+      } else {
+        localStorage.setItem("version", data.version);
 
-      this.setState({
-        contacts: data.phones,
-        searchedContact: data.phones,
-      });
-      // }
+        this.setState({
+          contacts: data.phones,
+          searchedContact: data.phones,
+        });
+      }
     });
   }
   componentDidUpdate() {
