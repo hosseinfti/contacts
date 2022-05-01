@@ -24,6 +24,8 @@ class Table extends Component {
       editFamily: "",
       editNumbers: "",
       editIndexNumbers: "",
+      timeout: "",
+      key: "",
     };
   }
 
@@ -74,11 +76,43 @@ class Table extends Component {
       contacts: temp,
     });
   };
+ 
+
+  // debounce start 
+
+  debounce = (func, timeout = 1000) => {
+    let timer;
+    return (...args) => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, timeout);
+    };
+  };
+  saveInput = () => {
+    let searched = this.state.contacts.filter((i) => {
+      return (
+        i.numbers.includes(this.state.searchInput) ||
+        i.name.includes(this.state.searchInput) ||
+        i.family.includes(this.state.searchInput)
+      );
+    });
+    this.setState({
+      searchedContact: searched,
+    });
+  };
+  processChanges = this.debounce(() => this.saveInput());
+  
+  // debounce end
+
 
   inputsChangedHandler = (e) => {
-    this.setState({
-      [e.target.id]: e.target.value,
-    });
+    this.setState(
+      {
+        [e.target.id]: e.target.value,
+      },
+      this.processChanges()
+    );
   };
 
   contactDeleteHandler = (itemToBeRemove) => {
@@ -132,47 +166,54 @@ class Table extends Component {
     });
   };
 
-  searchKeyHandler = (e, key) => {
-    let searched = this.state.contacts.filter((i) => {
-      return (
-        i.numbers.includes(e.target.value) ||
-        i.name.includes(e.target.value) ||
-        i.family.includes(e.target.value)
-      );
-    });
+  // searchKeyHandler = (e, key) => {
+  //   let searched = this.state.contacts.filter((i) => {
+  //     return (
+  //       i.numbers.includes(e.target.value) ||
+  //       i.name.includes(e.target.value) ||
+  //       i.family.includes(e.target.value)
+  //     );
+  //   });
+  //   console.log(searched);
 
-    let timout;
+  // console.log("down");
+  // this.setState(
+  //   {
+  //     timeout: "",
+  //   },
+  //   () => {
+  //     this.setState({
+  //       timeout: setTimeout(() => {
+  //         console.log("up");
+  //         this.setState({
+  //           searchedContact: searched,
+  //         });
+  //       }, 1000),
+  //     });
+  //   }
+  // );
 
-    clearTimeout(timout);
-    console.log("down");
+  // clearTimeout(this.state.timeout);
 
-    timout = setTimeout(() => {
-      console.log("up");
-      this.setState({
-        searchInput: e.target.value,
-        searchedContact: searched,
-      });
-    }, 1000);
+  //   switch (key) {
+  //     case "up":
+  //       timout = setTimeout(() => {
+  //         console.log("up");
+  //         this.setState({
+  //           searchInput: e.target.value,
+  //           searchedContact: searched,
+  //         });
+  //       }, 1000);
+  //       break;
 
-    // switch (key) {
-    //   case "up":
-    //     timout = setTimeout(() => {
-    //       console.log("up");
-    //       this.setState({
-    //         searchInput: e.target.value,
-    //         searchedContact: searched,
-    //       });
-    //     }, 1000);
-    //     break;
+  //     case "down":
+  //       clearTimeout(timout);
+  //       break;
 
-    //   case "down":
-    //     clearTimeout(timout);
-    //     break;
-
-    //   default:
-    //     break;
-    // }
-  };
+  //     default:
+  //       break;
+  //   }
+  // };
 
   changeOtherNum = (item1, index1) => {
     this.setState({
@@ -224,7 +265,7 @@ class Table extends Component {
             placeholder="جست‌جو..."
             id="searchInput"
             onChange={this.inputsChangedHandler}
-            onKeyUp={(e) => this.searchKeyHandler(e, "up")}
+            onKeyUp={this.processChanges()}
             // onKeyDown={(e) => this.searchKeyHandler(e, "down")}
           />
         </div>

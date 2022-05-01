@@ -1,4 +1,11 @@
-body {
+@font-face {
+    font-family: 'Jua';
+    src: url('./assets/font/Jua/Jua-Regular.ttf');
+    font-style: normal;
+    font-weight: normal;
+}
+
+.body {
     margin: 0;
     padding: 0;
 }

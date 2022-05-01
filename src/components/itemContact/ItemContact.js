@@ -24,7 +24,7 @@ class ItemContact extends Component {
     );
     return (
       <>
-        {finalList === ""
+        {finalList.length === 0
           ? noResult
           : finalList.map((i, index) => {
               return (
