@@ -4,6 +4,12 @@
     font-style: normal;
     font-weight: normal;
 }
+@font-face {
+    font-family:  'regEstedad';
+    src: url(./assets/font/Estedad/ttf/Estedad-Regular.ttf);
+    font-family: 'bEstedad';
+    src: url(./assets/font/Estedad/ttf/Estedad-Bold.ttf);
+}
 
 .body {
     margin: 0;
