@@ -14,7 +14,8 @@ class ItemContact extends Component {
       contacts,
       searchedContact,
       searchInput,
-      // contactInfoHandler,
+      inlineEditHandler,
+      contactInfoHandler,
     } = this.props;
     const finalList = searchInput ? searchedContact : contacts;
     const noResult = (
@@ -30,8 +31,8 @@ class ItemContact extends Component {
               return (
                 <tr className="contactItem" id={i.id} key={i.id}>
                   <td>{String(index + 1).padStart(2, "0")}).</td>
-                  <td>{i.name}</td>
-                  <td>{i.family}</td>
+                  <td id="editName" onClick={(e) => inlineEditHandler(e, i.name)}>{i.name}</td>
+                  <td id="editFamily" onClick={(e) => inlineEditHandler(e, i.family)}>{i.family}</td>
                   {/* <td>{String(i.numbers).replace((String(i.numbers).substring(5,8)),"***")}</td> */}
                   <td>
                     {String(i.numbers[0]).substring(7, 11) +
@@ -51,12 +52,12 @@ class ItemContact extends Component {
                     >
                       Edit
                     </button>
-                    {/* <button
+                    <button
                       className="infoBTN"
                       onClick={() => contactInfoHandler(i)}
                     >
                       i
-                    </button> */}
+                    </button>
                   </td>
                 </tr>
               );

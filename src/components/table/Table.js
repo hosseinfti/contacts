@@ -26,6 +26,7 @@ class Table extends Component {
       editIndexNumbers: "",
       timeout: "",
       key: "",
+      inlineInput: "",
     };
   }
 
@@ -76,9 +77,8 @@ class Table extends Component {
       contacts: temp,
     });
   };
- 
 
-  // debounce start 
+  // debounce start
 
   debounce = (func, timeout = 1000) => {
     let timer;
@@ -102,9 +102,8 @@ class Table extends Component {
     });
   };
   processChanges = this.debounce(() => this.saveInput());
-  
-  // debounce end
 
+  // debounce end
 
   inputsChangedHandler = (e) => {
     this.setState(
@@ -116,12 +115,15 @@ class Table extends Component {
   };
 
   contactDeleteHandler = (itemToBeRemove) => {
-    let newList = this.state.contacts.filter((i) => {
-      return i.id !== itemToBeRemove;
-    });
-    this.setState({
-      contacts: newList,
-    });
+    let sureToDelete = window.confirm("مخاطب حذف شود؟");
+    if (sureToDelete) {
+      let newList = this.state.contacts.filter((i) => {
+        return i.id !== itemToBeRemove;
+      });
+      this.setState({
+        contacts: newList,
+      });
+    }
   };
 
   contactSaveEditHandler = () => {
@@ -166,65 +168,17 @@ class Table extends Component {
     });
   };
 
-  // searchKeyHandler = (e, key) => {
-  //   let searched = this.state.contacts.filter((i) => {
-  //     return (
-  //       i.numbers.includes(e.target.value) ||
-  //       i.name.includes(e.target.value) ||
-  //       i.family.includes(e.target.value)
-  //     );
-  //   });
-  //   console.log(searched);
-
-  // console.log("down");
-  // this.setState(
-  //   {
-  //     timeout: "",
-  //   },
-  //   () => {
-  //     this.setState({
-  //       timeout: setTimeout(() => {
-  //         console.log("up");
-  //         this.setState({
-  //           searchedContact: searched,
-  //         });
-  //       }, 1000),
-  //     });
-  //   }
-  // );
-
-  // clearTimeout(this.state.timeout);
-
-  //   switch (key) {
-  //     case "up":
-  //       timout = setTimeout(() => {
-  //         console.log("up");
-  //         this.setState({
-  //           searchInput: e.target.value,
-  //           searchedContact: searched,
-  //         });
-  //       }, 1000);
-  //       break;
-
-  //     case "down":
-  //       clearTimeout(timout);
-  //       break;
-
-  //     default:
-  //       break;
-  //   }
-  // };
-
   changeOtherNum = (item1, index1) => {
     this.setState({
       editNumbers: item1,
       editIndexNumbers: index1,
     });
-    // this.state.contacts.map( (item2,index2) => {
-    //  if (item2.id === editId) {
+  };
 
-    //  }
-    // })
+  inlineEditHandler = (e, i) => {
+    this.setState({
+      [e.target.id]: i,
+    });
   };
 
   componentDidMount() {
@@ -266,7 +220,6 @@ class Table extends Component {
             id="searchInput"
             onChange={this.inputsChangedHandler}
             onKeyUp={this.processChanges()}
-            // onKeyDown={(e) => this.searchKeyHandler(e, "down")}
           />
         </div>
         <table>
@@ -298,6 +251,7 @@ class Table extends Component {
               family={this.state.family}
               id={this.state.id}
               numbers={this.state.numbers}
+              inlineEditHandler={this.inlineEditHandler}
             />
           </tbody>
         </table>
