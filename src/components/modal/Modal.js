@@ -12,9 +12,6 @@ class Modal extends Component {
   render() {
     const {
       contacts,
-      name,
-      family,
-      numbers,
       inputsChangedHandler,
       editName,
       editFamily,
@@ -27,36 +24,60 @@ class Modal extends Component {
       mulNumHandler,
       changeOtherNum,
     } = this.props;
+    let modalContent;
+    if (editIsOpen) {
+      modalContent = (
+        <Edit
+          editId={editId}
+          contacts={contacts}
+          editIsOpen={editIsOpen}
+          contactSaveEditHandler={contactSaveEditHandler}
+          editNumbers={editNumbers}
+          editFamily={editFamily}
+          editName={editName}
+          inputsChangedHandler={inputsChangedHandler}
+          mulNumHandler={mulNumHandler}
+          changeOtherNum={changeOtherNum}
+        />
+      );
+    } else if (infoIsOpen) {
+      modalContent = (
+        <Info
+          contacts={contacts}
+          editId={editId}
+          infoIsOpen={infoIsOpen}
+          editFamily={editFamily}
+          editName={editName}
+        />
+      );
+    } else {
+      modalContent = null;
+    }
+    // const modalContent = editIsOpen ? (
+    //   <Edit
+    //     editId={editId}
+    //     contacts={contacts}
+    //     editIsOpen={editIsOpen}
+    //     contactSaveEditHandler={contactSaveEditHandler}
+    //     editNumbers={editNumbers}
+    //     editFamily={editFamily}
+    //     editName={editName}
+    //     inputsChangedHandler={inputsChangedHandler}
+    //     mulNumHandler={mulNumHandler}
+    //     changeOtherNum={changeOtherNum}
+    //   />
+    // ) : infoIsOpen ? (
+    //   <Info
+    //     infoIsOpen={infoIsOpen}
+    //     name={name}
+    //     family={family}
+    //     numbers={numbers}
+    //   />
+    // ) : null;
     return (
-      <div
-        className={` ${
-          editIsOpen || infoIsOpen ? "modalContainer" : "modalDisplayNone"
-        }`}
-      >
+      <div className="modalContainer">
         <div className="modalBody">
-          {editIsOpen ? (
-            <Edit
-              editId={editId}
-              contacts={contacts}
-              closeTheModal={closeTheModal}
-              editIsOpen={editIsOpen}
-              contactSaveEditHandler={contactSaveEditHandler}
-              editNumbers={editNumbers}
-              editFamily={editFamily}
-              editName={editName}
-              inputsChangedHandler={inputsChangedHandler}
-              mulNumHandler={mulNumHandler}
-              changeOtherNum={changeOtherNum}
-            />
-          ) : infoIsOpen ? (
-            <Info
-              infoIsOpen={infoIsOpen}
-              closeTheModal={closeTheModal}
-              name={name}
-              family={family}
-              numbers={numbers}
-            />
-          ) : null}
+          {modalContent}
 
           <button onClick={closeTheModal} className="closeModalBTN">
             x

@@ -1,30 +1,37 @@
 import React, { Component } from "react";
-// import Modal from "../modal/Modal";
+import "../modal/modal.scss";
 
 class Info extends Component {
   render() {
-    const {
-        name,
-        family,
-        numbers,
-        // closeTheModal,
-        // infoIsOpen,
-      } = this.props;
+    const { editName, editFamily, editId, contacts } = this.props;
     return (
-      <div>
+      <div className="infoModal">
         <div>
           <div>نام</div>
-          <div>{name}</div>
+          <div>{editName}</div>
         </div>
         <div>
           <div>نام‌خانوادگی</div>
-          <div>{family}</div>
+          <div>{editFamily}</div>
         </div>
         <div>
           <div>شماره‌تلفن</div>
-          <div>{numbers.map((i) => {
-              return <div> i </div>
-          })}</div>
+          {/* eslint-disable-next-line */}
+          {contacts.map((i) => {
+            if (i.id === editId) {
+              return (
+                <div key={i.id}>
+                  {i.numbers.map((i, index) => {
+                    return (
+                      <div className="modalNumberList" key={i.id}>
+                        {i}
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            }
+          })}
         </div>
       </div>
     );

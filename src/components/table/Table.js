@@ -4,7 +4,7 @@ import "./table.scss";
 // import data from "../../json/data.json";
 import axios from "axios";
 import Modal from "../modal/Modal";
-import AddContactInput from "../addContactInput/AddContactInput";
+// import AddContactInput from "../addContactInput/AddContactInput";
 
 class Table extends Component {
   constructor(props) {
@@ -80,6 +80,12 @@ class Table extends Component {
 
   // debounce start
 
+  /**
+   * 
+   * @param {*} func 
+   * @param {*} timeout 
+   * @returns 
+   */
   debounce = (func, timeout = 1000) => {
     let timer;
     return (...args) => {
@@ -105,6 +111,10 @@ class Table extends Component {
 
   // debounce end
 
+  /**
+   * 
+   * @param {*} e 
+   */
   inputsChangedHandler = (e) => {
     this.setState(
       {
@@ -160,10 +170,14 @@ class Table extends Component {
       };
     });
   };
-  contactInfoHandler = () => {
+  contactInfoHandler = (e) => {
     this.setState((prevState) => {
       return {
         infoIsOpen: !prevState.infoIsOpen,
+        editId: e.id,
+        editName: e.name,
+        editFamily: e.family,
+        editNumbers: e.numbers[0],
       };
     });
   };
@@ -233,13 +247,13 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            <AddContactInput
+            {/* <AddContactInput
               addContactHandler={this.addContactHandler}
               inputsChangedHandler={this.inputsChangedHandler}
               name={this.state.name}
               family={this.state.family}
               numbers={this.state.numbers}
-            />
+            /> */}
             <ItemContact
               contactInfoHandler={this.contactInfoHandler}
               contactEditHandler={this.contactEditHandler}
@@ -255,9 +269,10 @@ class Table extends Component {
             />
           </tbody>
         </table>
-        <Modal
+        {this.state.editIsOpen || this.state.infoIsOpen ? <Modal
           contacts={this.state.contacts}
           editIsOpen={this.state.editIsOpen}
+          infoIsOpen={this.state.infoIsOpen}
           closeTheModal={this.closeTheModal}
           contactSaveEditHandler={this.contactSaveEditHandler}
           inputsChangedHandler={this.inputsChangedHandler}
@@ -270,7 +285,7 @@ class Table extends Component {
           numbers={this.state.numbers}
           mulNumHandler={this.mulNumHandler}
           changeOtherNum={this.changeOtherNum}
-        />
+        /> : null}
       </div>
     );
   }

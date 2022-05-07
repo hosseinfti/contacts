@@ -1,12 +1,19 @@
 import React, { Component } from "react";
 import "./itemContact.scss";
 
+/**
+ * 
+ */
 class ItemContact extends Component {
   constructor(props) {
     super(props);
 
     this.editRef = React.createRef();
   }
+  /**
+   * 
+   * @returns 
+   */
   render() {
     const {
       contactDeleteHandler,
@@ -38,6 +45,7 @@ class ItemContact extends Component {
                     {String(i.numbers[0]).substring(7, 11) +
                       "***" +
                       String(i.numbers[0]).substring(0, 4)}
+                      <span className="quickAddNumber">+</span>
                   </td>
                   <td className="itemBTNS">
                     <button

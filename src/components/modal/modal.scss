@@ -45,7 +45,7 @@
       outline: none;
     }
 
-    div:nth-child(3) div:nth-child(2) {
+    .modalAddNumber {
       display: flex;
     }
   }
@@ -66,7 +66,8 @@
     border-radius: 10px;
   }
 
-  .addPhoneContainer {
+  .modalAddNumber {
+    display: flex;
     button {
       box-shadow: 0px 1px 4px 0px #383838;
       padding-inline: 10px;
@@ -96,4 +97,12 @@
 
 .modalDisplayNone {
   display: none;
+}
+.infoModal {
+  background-color: #e1e1e1;
+  border-radius: 15px;
+  padding: 10px;
+  div {
+    margin-block: 10px;
+  }
 }

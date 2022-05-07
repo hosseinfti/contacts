@@ -1,17 +1,7 @@
 import React, { Component } from "react";
-// import Modal from "../modal/Modal";
+import "../modal/modal.scss"
 
 class Edit extends Component {
-
-
-
-  // changeOtherNum = (e) => {
-  //   this.setState({
-  //     editNumbers: 
-  //   })
-  // }
-
-
   render() {
     const {
       inputsChangedHandler,
@@ -23,8 +13,6 @@ class Edit extends Component {
       contactSaveEditHandler,
       mulNumHandler,
       changeOtherNum,
-      // closeTheModal,
-      // editIsOpen,
     } = this.props;
     return (
       <>
@@ -50,7 +38,7 @@ class Edit extends Component {
         </div>
         <div>
           <div>شماره‌تلفن</div>
-          <div className="addPhoneContainer">
+          <div className="modalAddNumber">
             <button onClick={mulNumHandler}>+</button>
             <input
               value={editNumbers}
@@ -58,18 +46,14 @@ class Edit extends Component {
               onChange={inputsChangedHandler}
             />
           </div>
+          {/* eslint-disable-next-line */}
           {contacts.map((i) => {
             if (i.id === editId) {
               return (
                 <div key={i.id}>
-                  {i.numbers.map((i,index) => {
+                  {i.numbers.map((i, index) => {
                     return (
-                      <div
-                        onClick={() => changeOtherNum(i,index)}
-                        key={i.id}
-                        // id="editNumbers"
-                        // onClick={(e) => inputsChangedHandler(i.numbers)}
-                      >
+                      <div className="modalNumberList" onClick={() => changeOtherNum(i, index)} key={i.id}>
                         {i}
                       </div>
                     );

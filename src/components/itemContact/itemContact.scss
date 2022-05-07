@@ -1,3 +1,6 @@
+
+
+
 .contactItem {
   box-shadow: 0px 3px 3px -4px;
   td {
@@ -12,7 +15,7 @@
   box-shadow: none;
 }
 .editBTN {
-  margin-right: 4px;
+  margin-inline: 4px;
 }
 .itemBTNS {
   padding-inline: 0px !important;
@@ -25,7 +28,13 @@
   }
 }
 .addButton {
-  box-shadow: 0px 1px 4px -2px;
+  color: #fff;
+  background-color: transparent;
+  border: none;
+  box-shadow: 0px 0px 4px 0px #000;
+  margin-block: 50px 10px;
+  padding: 10px 20px;
+  border-radius: 10px;
 }
 
 .noResult {
