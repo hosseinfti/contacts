@@ -124,6 +124,10 @@ class Table extends Component {
     );
   };
 
+  /**
+   * 
+   * @param {*} itemToBeRemove 
+   */
   contactDeleteHandler = (itemToBeRemove) => {
     let sureToDelete = window.confirm("مخاطب حذف شود؟");
     if (sureToDelete) {
@@ -239,7 +243,7 @@ class Table extends Component {
         <table>
           <thead>
             <tr>
-              <td>ردیف</td>
+              <th>ردیف</th>
               <th>نام</th>
               <th>نام خانوادگی</th>
               <th>شماره تلفن</th>

@@ -5,6 +5,8 @@
   box-shadow: 0px 3px 3px -4px;
   td {
     padding: 10px;
+    text-align: center;
+
   }
 }
 .contactItem:last-child td {
@@ -23,8 +25,11 @@
   flex-wrap: nowrap;
 
   button {
-    width: 35px;
+    width: 30px;
+    height: 30px;
     box-shadow: 0px 1px 4px -2px;
+    border-radius: 15px;
+    background-color: transparent;
   }
 }
 .addButton {
