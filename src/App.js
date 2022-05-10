@@ -1,10 +1,12 @@
 import "./App.scss";
-import Routing from "./components/routing/Routing";
+import ContactProvider from "./components/ContactContext";
+// import Routing from "./components/routing/Routing";
 
 function App() {
   return (
     <div className="App">
-      <Routing />
+      <ContactProvider />
+      {/* <Routing /> */}
     </div>
   );
 }

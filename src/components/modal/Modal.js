@@ -24,7 +24,9 @@ class Modal extends Component {
       mulNumHandler,
       changeOtherNum,
     } = this.props;
+
     let modalContent;
+    
     if (editIsOpen) {
       modalContent = (
         <Edit
@@ -53,27 +55,7 @@ class Modal extends Component {
     } else {
       modalContent = null;
     }
-    // const modalContent = editIsOpen ? (
-    //   <Edit
-    //     editId={editId}
-    //     contacts={contacts}
-    //     editIsOpen={editIsOpen}
-    //     contactSaveEditHandler={contactSaveEditHandler}
-    //     editNumbers={editNumbers}
-    //     editFamily={editFamily}
-    //     editName={editName}
-    //     inputsChangedHandler={inputsChangedHandler}
-    //     mulNumHandler={mulNumHandler}
-    //     changeOtherNum={changeOtherNum}
-    //   />
-    // ) : infoIsOpen ? (
-    //   <Info
-    //     infoIsOpen={infoIsOpen}
-    //     name={name}
-    //     family={family}
-    //     numbers={numbers}
-    //   />
-    // ) : null;
+
     return (
       <div className="modalContainer">
         <div className="modalBody">

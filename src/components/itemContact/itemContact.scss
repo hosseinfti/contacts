@@ -1,12 +1,8 @@
-
-
-
 .contactItem {
   box-shadow: 0px 3px 3px -4px;
   td {
     padding: 10px;
     text-align: center;
-
   }
 }
 .contactItem:last-child td {
@@ -23,6 +19,7 @@
   padding-inline: 0px !important;
   display: flex;
   flex-wrap: nowrap;
+  justify-content: center;
 
   button {
     width: 30px;
