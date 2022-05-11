@@ -12,23 +12,18 @@ class ItemContact extends Component {
     const {
       contactDeleteHandler,
       contactEditHandler,
-      contacts,
       searchedContact,
-      searchInput,
       inlineEditHandler,
       contactInfoHandler,
     } = this.props;
-    const finalList = searchInput ? searchedContact : contacts;
-    const noResult = (
-      <tr className="noResult">
-        <td colSpan={5}>یافت نشد</td>
-      </tr>
-    );
+
+    const noResult = <div className="noResult">موردی یافت نشد</div>;
+
     return (
       <>
-        {finalList.length === 0
+        {searchedContact.length === 0
           ? noResult
-          : finalList.map((i, index) => {
+          : searchedContact.map((i, index) => {
               return (
                 <tr className="contactItem" id={i.id} key={i.id}>
                   <td>{String(index + 1).padStart(2, "0")}).</td>

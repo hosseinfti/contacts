@@ -17,7 +17,6 @@ class Modal extends Component {
       editFamily,
       editNumbers,
       editId,
-      contactSaveEditHandler,
       closeTheModal,
       editIsOpen,
       infoIsOpen,
@@ -26,14 +25,13 @@ class Modal extends Component {
     } = this.props;
 
     let modalContent;
-    
+
     if (editIsOpen) {
       modalContent = (
         <Edit
           editId={editId}
           contacts={contacts}
           editIsOpen={editIsOpen}
-          contactSaveEditHandler={contactSaveEditHandler}
           editNumbers={editNumbers}
           editFamily={editFamily}
           editName={editName}

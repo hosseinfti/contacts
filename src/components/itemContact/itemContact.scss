@@ -40,8 +40,15 @@
 }
 
 .noResult {
+  opacity: 0.5;
+  font-weight: bold;
+  position: absolute;
+  right: 20%;
+  top: 40%;
   text-align: center;
-  td {
-    padding-top: 15px;
-  }
+  box-shadow: none;
+  // div {
+  padding-block: 15px;
+  font-size: 70px;
+  // }
 }

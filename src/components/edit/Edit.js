@@ -4,20 +4,19 @@ import "../modal/modal.scss";
 
 class Edit extends Component {
   render() {
-    const {
-      // contacts,
-      // editName,
-      // editFamily,
-      // editNumbers,
-      // editId,
-      contactSaveEditHandler,
-      mulNumHandler,
-      changeOtherNum,
-    } = this.props;
-
     return (
       <ContactContext.Consumer>
-        {({ inputsChangedHandler, editName, editFamily, editId, contacts, editNumbers }) => {
+        {({
+          inputsChangedHandler,
+          contacts,
+          editName,
+          editFamily,
+          editNumbers,
+          editId,
+          contactSaveEditHandler,
+          mulNumHandler,
+          changeOtherNum,
+        }) => {
           return (
             <>
               <div>
@@ -55,14 +54,14 @@ class Edit extends Component {
                   if (i.id === editId) {
                     return (
                       <div key={i.id}>
-                        {i.numbers.map((i, index) => {
+                        {i.numbers.map((item, index) => {
                           return (
                             <div
                               className="modalNumberList"
-                              onClick={() => changeOtherNum(i, index)}
-                              key={i.id}
+                              onClick={() => changeOtherNum(item, index)}
+                              key={item.id}
                             >
-                              {i}
+                              {item}
                             </div>
                           );
                         })}

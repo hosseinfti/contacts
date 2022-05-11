@@ -8,13 +8,13 @@ class AddContactInput extends Component {
     return (
       <>
         <ContactContext.Consumer>
-          {(
-           {inputsChangedHandler,
-           addContactHandler,
-           name,
-           family,
-           numbers,}
-           ) => {
+          {({
+            inputsChangedHandler,
+            addContactHandler,
+            name,
+            family,
+            numbers,
+          }) => {
             return (
               <div className="wellcomeAddNumber">
                 <div>

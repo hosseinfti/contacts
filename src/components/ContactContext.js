@@ -13,12 +13,15 @@ class ContactProvider extends Component {
       family: "",
       numbers: [],
       contacts: [],
+      searchInput: "",
       searchedContact: [],
+      editIsOpen: false,
+      infoIsOpen: false,
       editId: "",
       editName: "",
       editFamily: "",
       editNumbers: "",
-      editIndexNumbers: "",
+      editIndexNumbers: 0,
     };
   }
 
@@ -41,7 +44,7 @@ class ContactProvider extends Component {
 
         this.setState({
           contacts: data.phones,
-          searchedContact: data.phones,
+          searchedContact: [],
         });
       }
     });
@@ -81,7 +84,6 @@ class ContactProvider extends Component {
   };
 
   // debounce start
-
   /**
    *
    * @param {function} func
@@ -110,7 +112,6 @@ class ContactProvider extends Component {
     });
   };
   processChanges = this.debounce(() => this.saveInput());
-
   // debounce end
 
   inputsChangedHandler = (e) => {
@@ -118,8 +119,101 @@ class ContactProvider extends Component {
       {
         [e.target.id]: e.target.value,
       },
-      this.processChanges()
+      () => {
+        this.processChanges();
+      }
     );
+  };
+
+  contactDeleteHandler = (itemToBeRemove) => {
+    let sureToDelete = window.confirm("مخاطب حذف شود؟");
+    if (sureToDelete) {
+      let newList = this.state.contacts.filter((i) => {
+        return i.id !== itemToBeRemove;
+      });
+      this.setState({
+        contacts: newList,
+        searchedContact: newList,
+      });
+    }
+  };
+
+  contactSaveEditHandler = () => {
+    let editedList = this.state.contacts.map((i, index) => {
+      if (i.id === this.state.editId) {
+        i.name = this.state.editName;
+        i.family = this.state.editFamily;
+        i.numbers[this.state.editIndexNumbers] = this.state.editNumbers;
+      }
+
+      return i;
+    });
+    this.setState({
+      contacts: editedList,
+      editIsOpen: false,
+    });
+  };
+
+  contactEditHandler = (e) => {
+    this.setState((prevState) => {
+      return {
+        editIsOpen: !prevState.editIsOpen,
+        editId: e.id,
+        editName: e.name,
+        editFamily: e.family,
+        editNumbers: e.numbers[0],
+      };
+    });
+  };
+  contactInfoHandler = (e) => {
+    this.setState((prevState) => {
+      return {
+        infoIsOpen: !prevState.infoIsOpen,
+        editId: e.id,
+        editName: e.name,
+        editFamily: e.family,
+        editNumbers: e.numbers[0],
+      };
+    });
+  };
+
+  changeOtherNum = (item1, index1) => {
+    this.setState({
+      editNumbers: item1,
+      editIndexNumbers: index1,
+    });
+  };
+
+  inlineEditHandler = (e, i) => {
+    this.setState({
+      [e.target.id]: i,
+    });
+  };
+
+  mulNumHandler = () => {
+    let temp = this.state.contacts.map((i) => {
+      if (i.id === this.state.editId) {
+        let exsistIndex = i.numbers.indexOf(this.state.editNumbers);
+        if (exsistIndex === -1) {
+          i.numbers.push(this.state.editNumbers);
+        } else {
+          alert("شماره تکراری است");
+        }
+        return i;
+      } else {
+        return i;
+      }
+    });
+    this.setState({
+      contacts: temp,
+    });
+  };
+
+  closeTheModal = () => {
+    this.setState({
+      editIsOpen: false,
+      infoIsOpen: false,
+    });
   };
 
   render() {
@@ -132,6 +226,30 @@ class ContactProvider extends Component {
           addContactHandler: (e) => {
             this.addContactHandler(e);
           },
+          contactDeleteHandler: (e) => {
+            this.contactDeleteHandler(e);
+          },
+          contactSaveEditHandler: (e) => {
+            this.contactSaveEditHandler(e);
+          },
+          contactEditHandler: (e) => {
+            this.contactEditHandler(e);
+          },
+          contactInfoHandler: (e) => {
+            this.contactInfoHandler(e);
+          },
+          changeOtherNum: (item, index) => {
+            this.changeOtherNum(item, index);
+          },
+          closeTheModal: (e) => {
+            this.closeTheModal(e);
+          },
+          inlineEditHandler: (e, i) => {
+            this.inlineEditHandler(e, i);
+          },
+          mulNumHandler: (e) => {
+            this.mulNumHandler(e);
+          },
           processChanges: (e) => {
             this.processChanges(e);
           },
@@ -139,6 +257,15 @@ class ContactProvider extends Component {
           family: this.state.family,
           numbers: this.state.numbers,
           contacts: this.state.contacts,
+          searchInput: this.state.searchInput,
+          searchedContact: this.state.searchedContact,
+          editIsOpen: this.state.editIsOpen,
+          infoIsOpen: this.state.infoIsOpen,
+          editId: this.state.editId,
+          editName: this.state.editName,
+          editFamily: this.state.editFamily,
+          editNumbers: this.state.editNumbers,
+          editIndexNumbers: this.state.editIndexNumbers,
         }}
       >
         <Routing />
