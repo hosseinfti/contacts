@@ -17,13 +17,10 @@ class ItemContact extends Component {
       contactInfoHandler,
     } = this.props;
 
-    const noResult = <div className="noResult">موردی یافت نشد</div>;
 
     return (
       <>
-        {searchedContact.length === 0
-          ? noResult
-          : searchedContact.map((i, index) => {
+        {searchedContact.map((i, index) => {
               return (
                 <tr className="contactItem" id={i.id} key={i.id}>
                   <td>{String(index + 1).padStart(2, "0")}).</td>

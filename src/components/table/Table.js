@@ -6,6 +6,8 @@ import { ContactContext } from "../ContactContext";
 
 class Table extends Component {
   render() {
+    const noResult = <div className="noResult">موردی یافت نشد</div>;
+
     return (
       <ContactContext.Consumer>
         {({
@@ -66,6 +68,7 @@ class Table extends Component {
                   />
                 </tbody>
               </table>
+              {searchedContact.length === 0 && searchInput ? noResult : null}
               {editIsOpen || infoIsOpen ? (
                 <Modal
                   contacts={contacts}
