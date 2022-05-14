@@ -8,7 +8,6 @@ class Info extends Component {
       <ContactContext.Consumer>
         {({ editName, editFamily, editId, contacts }) => {
           return (
-            <>
               <div className="infoModal">
                 <div>
                   <div>نام</div>
@@ -38,7 +37,6 @@ class Info extends Component {
                   })}
                 </div>
               </div>
-            </>
           );
         }}
       </ContactContext.Consumer>
