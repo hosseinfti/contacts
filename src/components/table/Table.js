@@ -8,6 +8,7 @@ import backArrow from "../../assets/image/backArrow.svg";
 class Table extends Component {
   render() {
     const noResult = <div className="noResult">موردی یافت نشد</div>;
+    const noContactYet = <div className="noResult">هنوز موردی اضافه نشده</div>;
 
     return (
       <ContactContext.Consumer>
@@ -67,7 +68,11 @@ class Table extends Component {
                   />
                 </div>
               </div>
-              {searchedContact.length === 0 && searchInput ? noResult : null}
+              {searchedContact.length === 0 && searchInput
+                ? noResult
+                : searchedContact.length === 0 && contacts.length === 0
+                ? noContactYet
+                : null}
               {editIsOpen || infoIsOpen ? (
                 <Modal
                   contacts={contacts}
