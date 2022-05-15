@@ -48,11 +48,11 @@ class Table extends Component {
                     onKeyUp={(e) => processChanges(e)}
                   />
                 </div>
-                <div className="previousPage">
-                  <Link to="/">
+                <Link to="/">
+                  <div className="previousPage">
                     <img src={backArrow} width="25px" alt="backArrow" />
-                  </Link>
-                </div>
+                  </div>
+                </Link>
               </div>
               <div className="table">
                 <div>

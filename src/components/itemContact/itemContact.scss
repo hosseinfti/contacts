@@ -11,6 +11,9 @@
 }
 .profilePicture {
   width: 50px;
+  img {
+    opacity: 0.5;
+  }
 }
 .nameFamily {
   div:nth-child(1) {
