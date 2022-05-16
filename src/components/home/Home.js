@@ -12,11 +12,11 @@ class Home extends Component {
       <>
         <div className="wellcome">
           <Logo />
-          <h1>Wellcome</h1>
-          <AddContactInput />
-          <Link to="/contacts">
+          {/* <h1>Wellcome</h1> */}
+          {/* <AddContactInput /> */}
+          {/* <Link to="/contacts">
             <div className="enterBTN">دفتر‌تلفن</div>
-          </Link>
+          </Link> */}
         </div>
       </>
     );
