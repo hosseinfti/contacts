@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import AddContactInput from "../addContactInput/AddContactInput";
+import Logo from "../logo/Logo";
 import "./home.scss";
 
 class Home extends Component {
@@ -10,6 +11,7 @@ class Home extends Component {
     return (
       <>
         <div className="wellcome">
+          <Logo />
           <h1>Wellcome</h1>
           <AddContactInput />
           <Link to="/contacts">

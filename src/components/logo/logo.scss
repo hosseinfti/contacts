@@ -1,0 +1,96 @@
+.logo {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  margin-block: 40px;
+}
+.sides {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  border: 8px solid #000000;
+  border-bottom: none;
+  border-top: none;
+  border-radius: 12px;
+  
+}
+
+.sides.side1:before {
+    content: "";
+    display: block;
+    background: transparent;
+    width: 42px;
+    height: 42px;
+    transform: translateY(-19px) translateX(1px) perspective(134px) rotateX(45deg) rotate(45deg);
+    border-left: 10px solid;
+    border-top: 10px solid;
+    border-radius: 13px;
+}
+.sides.sides.side1:after {
+    content: "";
+    display: block;
+    background: transparent;
+    width: 42px;
+    height: 42px;
+    transform: translateY(-34px) translateX(0px) perspective(134px) rotateX(59deg) rotate(225deg);
+    border-left: 8px solid;
+    border-top: 8px solid;
+    border-radius: 13px;
+}
+
+// .side1 {
+    // transform: rotate(20deg) translateX(13px) translateY(0px);
+//     border-left: none;
+//     border-right: none;
+//     border-bottom: none;
+//     box-shadow: 0px -4px 3px -3px;
+//     border-color: #82bd42;
+// }
+// .side2 {
+//     transform: rotate(-20deg) translateX(-12px);
+//     border-left: none;
+//     border-right: none;
+//     border-bottom: none;
+//     box-shadow: 0px -4px 3px -3px;
+//     /* border-color: #82bd42; */
+    // border-image: linear-gradient(to left, #82bd42, #29b4a4);
+//     border-image-slice: 1;
+// }
+// .side3 {
+//     transform: rotate(90deg) translateX(5px) translateY(-12px);
+//     border-left: none;
+//     border-right: none;
+//     border-bottom: none;
+//     box-shadow: 0px -4px 3px -3px;
+//     border-color: #82bd42;
+// }
+// .side4 {
+//     transform: rotate(200deg) translateY(-10px) translateX(8px);
+//     border-left: none;
+//     border-right: none;
+//     border-bottom: none;
+//     box-shadow: 0px -4px 3px -3px;
+//     border-color: #29b4a4;
+// }
+// .side5 {
+//     transform: rotate(90deg) translateX(5px) translateY(12px);
+//     border-left: none;
+//     border-right: none;
+//     border-top: none;
+//     box-shadow: 0px 4px 2px -3px;
+//     border-color: #29b4a4;
+// }
+// .side6 {
+//     transform: rotate(-20deg) translateX(8px) translateY(10px);
+//     border-left: none;
+//     border-right: none;
+//     border-top: none;
+//     box-shadow: 0px 4px 2px -3px;
+//     /* border-color: #82bd42; */
+//     border-image: linear-gradient(to left, #82bd42, #29b4a4);
+//     border-image-slice: 1;
+// }
+
+
