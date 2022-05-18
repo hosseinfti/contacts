@@ -1,0 +1,1 @@
+console.log("ws file is in public folder");

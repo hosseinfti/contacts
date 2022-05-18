@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import AddContactInput from "../addContactInput/AddContactInput";
 import Logo from "../logo/Logo";
+// import NewLogo from "../logo/NewLogo";
 import "./home.scss";
 
 class Home extends Component {
@@ -12,11 +13,12 @@ class Home extends Component {
       <>
         <div className="wellcome">
           <Logo />
-          {/* <h1>Wellcome</h1> */}
-          {/* <AddContactInput /> */}
-          {/* <Link to="/contacts">
+          {/* <NewLogo /> */}
+          <h1>Wellcome</h1>
+          <AddContactInput />
+          <Link to="/contacts">
             <div className="enterBTN">دفتر‌تلفن</div>
-          </Link> */}
+          </Link>
         </div>
       </>
     );

@@ -1,9 +1,10 @@
 $primaryColor1: #0cb3b4;
 $primaryColor2: #83be30;
 
+
 .logo {
   width: 100px;
-  height: 200px;
+  height: 50px;
   position: relative;
   margin-block: 40px;
 }
@@ -11,16 +12,16 @@ $primaryColor2: #83be30;
   position: absolute;
   top: 0px;
   left: 0;
-  width: 84px;
+  width: 80px;
   height: 70px;
 }
 
 .side1 {
-  border: 13px solid #000000;
+  border: 15px solid #000000;
   border-bottom: none;
   border-top: none;
   border-radius: 11px;
-  border-image: linear-gradient(90deg, $primaryColor1 0%, $primaryColor2 55%);
+  border-image: linear-gradient(90deg, #0cb3b4 0%, #83be30 55%);
   border-image-slice: 1;
   -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -28,41 +29,66 @@ $primaryColor2: #83be30;
 }
 
 .side2 {
-  transform: translateY(-34px) translateX(16px) perspective(5000px)
+  transform: translateY(-34.5px) translateX(14.6px) perspective(5000px)
     rotateX(52deg) rotate(45deg);
   width: 60px;
   height: 60px;
-  border: 18px solid #000000;
-  border-radius: 8px;
+  border: 21px solid #000000;
+  border-radius: 10px;
   border-bottom: none;
   border-right: none;
-  border-image: linear-gradient(359deg, $primaryColor1 0%, $primaryColor2 37%);
+  border-image: linear-gradient(359deg, #0cb3b4 0%, #83be30 37%);
   border-image-slice: 1;
   -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
 }
 .side3 {
-  transform: translateY(26px) translateX(16px) perspective(10000px)
+  transform: translateY(23px) translateX(14.6px) perspective(10000px)
     rotateX(48deg) rotate(45deg);
   width: 60px;
   height: 60px;
-  border: 18px solid #000000;
-  border-radius: 8px;
+  border: 21px solid #000000;
+  border-radius: 10px;
   border-left: none;
   border-top: none;
-  border-image: linear-gradient(5deg, $primaryColor1 0%, $primaryColor2 55%);
+  border-image: linear-gradient(5deg, #0cb3b4 0%, #83be30 55%);
   border-image-slice: 1;
   -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
+}
+.side5 {
+  transform: translateY(-16.9px) translateX(24.4px) perspective(5000px)
+    rotateX(52deg) rotate(45deg);
+  width: 57.1px;
+  height: 57.1px;
+  border: 4px solid #000000;
+  border-radius: 8px;
+  border-bottom: none;
+  border-right: none;
+
+  mask-composite: exclude;
+  z-index: 5;
+}
+.side6 {
+  transform: translateY(25px) translateX(24.4px) perspective(10000px)
+    rotateX(48deg) rotate(45deg);
+  width: 57.2px;
+  height: 57.2px;
+  border: 4px solid #000000;
+  border-radius: 8px;
+  border-left: none;
+  border-top: none;
+
+  z-index: 6;
 }
 .insideShape {
   overflow: hidden;
   height: 62px;
   width: 58.8px;
   position: absolute;
-  top: -3px;
+  top: -5px;
   right: 15.5px;
 }
 .insideShape::before {
@@ -75,7 +101,7 @@ $primaryColor2: #83be30;
   border-left: none;
   transform: translateY(0px) translateX(0px) perspective(10000px) rotateX(48deg)
     rotate(45deg);
-  border-image: linear-gradient(5deg, $primaryColor1 0%, $primaryColor2 26%);
+  border-image: linear-gradient(5deg, #0cb3b4 0%, #83be30 26%);
   border-image-slice: 1;
 }
 // .side4 {

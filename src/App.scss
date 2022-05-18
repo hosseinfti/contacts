@@ -1,24 +1,32 @@
+$transparent: rgb(26, 130, 190);
+
+
 @font-face {
-    font-family: 'Jua';
-    src: url('./assets/font/Jua/Jua-Regular.ttf');
-    font-style: normal;
-    font-weight: normal;
+  font-family: "Jua";
+  src: url("./assets/font/Jua/Jua-Regular.ttf");
+  font-style: normal;
+  font-weight: normal;
 }
 @font-face {
-    font-family:  'regEstedad';
-    src: url(./assets/font/Estedad/ttf/Estedad-Regular.ttf);
-    font-family: 'bEstedad';
-    src: url(./assets/font/Estedad/ttf/Estedad-Bold.ttf);
+  font-family: "regEstedad";
+  src: url(./assets/font/Estedad/ttf/Estedad-Regular.ttf);
+  font-family: "bEstedad";
+  src: url(./assets/font/Estedad/ttf/Estedad-Bold.ttf);
 }
 
 .body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 .App {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    // background: linear-gradient(50deg, #29b4a4 20%, #86be3e 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: $transparent;
+  overflow: auto;
+  // background: linear-gradient(50deg, #29b4a4 20%, #86be3e 100%);
+}
+.side5 , .side6{
+  border-color: $transparent !important;
 }

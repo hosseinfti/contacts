@@ -1,0 +1,19 @@
+.newLogo {
+    position: relative;
+  width: 80px;
+  height: 90px;
+  background-color: black;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+
+.newLogo::before {
+  content: "";
+  position: absolute;
+  top: 9px;
+  right: 10px;
+  display: block;
+  width: 60px;
+  height: 70px;
+  background-color: white;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
