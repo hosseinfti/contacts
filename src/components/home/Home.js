@@ -12,12 +12,14 @@ class Home extends Component {
     return (
       <>
         <div className="wellcome">
-          <Logo />
-          {/* <NewLogo /> */}
-          <h1>Wellcome</h1>
+          <div className="wellcomeContainer">
+            <Logo />
+            <h1>Wellcome</h1>
+          </div>
           <AddContactInput />
-          <Link to="/contacts">
-            <div className="enterBTN">دفتر‌تلفن</div>
+          <Link className="enterBTN" to="/contacts">
+            <div className="txtEnterBTN">دفتر‌تلفن</div>
+            <div className="arrowEnterBTN"></div>
           </Link>
         </div>
       </>

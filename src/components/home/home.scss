@@ -3,73 +3,86 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 80%;
+  max-width: 300px;
   height: 100%;
-  a {
-    text-decoration: none;
+
+  .wellcomeContainer {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+  }
+  h1 {
+    padding: 0;
+    margin: 0;
+    font-family: "bEstedad";
+    font-size: 85px;
     color: #1b1734;
   }
+
+  .enterBTN {
+    width: 60%;
+    max-width: 150px;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-evenly;
+    text-decoration: none;
+    color: #1b1734;
+    border-radius: 25px;
+    border: 2px solid #fff;
+    background-color: transparent;
+    color: #fff;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+    padding: 0px 4%;
+    margin-top: 35px;
+    background-color: transparent;
+    color: #fff;
+  }
+
 }
-h1 {
-  padding: 0;
-  margin: 0;
-  font-family: "bEstedad";
-  color: #1b1734;
-}
-.wellcome:nth-child(1) {
-  font-size: 50px;
-}
-.enterBTN {
-  display: flex;
-  align-items: center;
-  position: relative;
-  background-color: transparent;
-  color: #fff;
-  border-radius: 25px;
-  border: 2px solid #fff;
-  margin-top: 80px;
-  padding: 10px 80px;
-  transition-property: background-color;
-  transition-duration: 0.5s;
-  transition-timing-function: linear;
-}
+
 .enterBTN:hover {
   background-color: #fff;
   color: #1b1734;
+  .arrowEnterBTN::before {
+    transform: translateX(100%);
+  }
 }
-.enterBTN::after {
+.arrowEnterBTN::before {
   content: "<";
+  display: block;
+  padding-top: 5px;
   font-family: "Jua";
   font-size: 30px;
-  position: absolute;
-  top: 25px;
-  right: 15px;
-  transition: right 0.5s ease;
-}
-.enterBTN:hover::after {
-  right: 10px;
+  transform: translateX(50%);
+  transition: transform 0.5s ease;
 }
 .wellcomeAddNumber {
   color: #fff;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 300px;
   background-color: transparent;
   border-radius: 15px;
   padding: 10px;
   box-shadow: 0px 0px 4px 0px #000;
+  width: 80%;
   div {
     font-size: 20px;
     margin-block: 10px;
+    width: 100%;
   }
   input {
     background-color: transparent;
     box-shadow: 0px 0px 4px -1px #000;
     border: none;
     border-radius: 10px;
-    padding: 5px 20px;
+    padding: 5px 0px;
     outline: none;
+    width: 100%;
   }
 }
 .addButton {
@@ -88,4 +101,24 @@ h1 {
 .addButton:hover {
   color: #1b1734;
   background-color: #fff;
+}
+
+@media only screen and(max-width: 600px) {
+  .wellcome h1 {
+    font-size: 50px;
+  }
+}
+
+@media only screen and(max-width: 310px) {
+  .logo {
+    margin: 0px;
+  }
+  .wellcomeContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .wellcome h1 {
+    font-size: 30px;
+  }
 }
