@@ -40,7 +40,6 @@ class Table extends Component {
             <div className="Container">
               <div className="sectionOne">
                 <div className="searchContainer">
-                  {/* <div>جست‌جو</div> */}
                   <input
                     value={searchInput}
                     placeholder="جست‌جو..."

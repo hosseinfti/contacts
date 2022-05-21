@@ -7,8 +7,6 @@ import "./home.scss";
 
 class Home extends Component {
   render() {
-    // const { name, family, numbers, inputsChangedHandler, addContactHandler } =
-    //   this.props;
     return (
       <>
         <div className="wellcome">

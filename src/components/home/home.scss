@@ -27,7 +27,7 @@
     border-radius: 25px;
     box-shadow: 0px 0px 4px 0px #000;
     background-color: transparent;
-    color: #fff;
+    color: #1b1734;
     transition-property: background-color;
     transition-duration: 0.5s;
     transition-timing-function: linear;
@@ -45,10 +45,11 @@
 }
 
 .enterBTN:hover {
+  background-color: #1b1734;
   transition: box-shadow 0.5s ease;
   transition: color 0.5s ease;
   box-shadow: 0px 0px 10px 0px #000;
-  color: #1b1734;
+  color: #ffffff;
   .arrowEnterBTN::before {
     transform: translateX(100%);
   }
@@ -64,7 +65,7 @@
   opacity: 0.5;
 }
 .wellcomeAddNumber {
-  color: #fff;
+  color: #1b1734;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -89,7 +90,7 @@
   }
 }
 .addButton {
-  color: #fff;
+  color: #1b1734;
   background-color: transparent;
   border: none;
   box-shadow: 0px 0px 4px 0px #000;
@@ -102,8 +103,8 @@
   transition-timing-function: linear;
 }
 .addButton:hover {
-  color: #1b1734;
-  background-color: #fff;
+  color: #ffffff;
+  background-color: #1b1734;
 }
 
 @media only screen and(max-width: 600px) {
