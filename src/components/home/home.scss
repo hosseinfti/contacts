@@ -4,19 +4,14 @@
   justify-content: center;
   align-items: center;
   width: 80%;
-  max-width: 300px;
+  max-width: 400px;
   height: 100%;
 
-  .wellcomeContainer {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-  }
   h1 {
     padding: 0;
     margin: 0;
     font-family: "bEstedad";
-    font-size: 85px;
+    font-size: 75px;
     color: #1b1734;
   }
 
@@ -30,7 +25,7 @@
     text-decoration: none;
     color: #1b1734;
     border-radius: 25px;
-    border: 2px solid #fff;
+    box-shadow: 0px 0px 4px 0px #000;
     background-color: transparent;
     color: #fff;
     transition-property: background-color;
@@ -38,14 +33,21 @@
     transition-timing-function: linear;
     padding: 0px 4%;
     margin-top: 35px;
-    background-color: transparent;
-    color: #fff;
   }
-
+}
+.wellcomeContainer {
+  width: 100%;
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .enterBTN:hover {
-  background-color: #fff;
+  transition: box-shadow 0.5s ease;
+  transition: color 0.5s ease;
+  box-shadow: 0px 0px 10px 0px #000;
   color: #1b1734;
   .arrowEnterBTN::before {
     transform: translateX(100%);
@@ -59,6 +61,7 @@
   font-size: 30px;
   transform: translateX(50%);
   transition: transform 0.5s ease;
+  opacity: 0.5;
 }
 .wellcomeAddNumber {
   color: #fff;
@@ -104,19 +107,23 @@
 }
 
 @media only screen and(max-width: 600px) {
+  .wellcomeContainer {
+    flex-direction: row-reverse;
+    align-items: center;
+  }
   .wellcome h1 {
     font-size: 50px;
   }
 }
 
-@media only screen and(max-width: 310px) {
+@media only screen and(max-width: 450px) {
   .logo {
     margin: 0px;
   }
   .wellcomeContainer {
-    display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
   }
   .wellcome h1 {
     font-size: 30px;
