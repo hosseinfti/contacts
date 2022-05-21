@@ -12,7 +12,7 @@ class Home extends Component {
         <div className="wellcome">
           <div className="wellcomeContainer">
             <Logo />
-            <h1>Wellcome</h1>
+            <h1 className="wellcomeTxt">Wellcome</h1>
           </div>
           <AddContactInput />
           <Link className="enterBTN" to="/contacts">
