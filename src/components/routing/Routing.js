@@ -13,7 +13,7 @@ class Routing extends Component {
           <Routes>
             <Route exact path="/" element={<Home />} />
             <Route exact path="/contacts" element={<Table />} />
-            <Route exact path="/contacts/user" element={<User />} />
+            <Route exact path="/contacts/user/:id" element={<User />} />
             <Route path="*" element={ <NotFound /> } />
           </Routes>
         </Router>

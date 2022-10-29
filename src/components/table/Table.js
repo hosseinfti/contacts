@@ -54,7 +54,7 @@ class Table extends Component {
                   </div>
                 </Link>
               </div>
-              <div className="table">
+              <div className="sectionTwo table">
                 <div>
                   <ItemContact
                     contactInfoHandler={contactInfoHandler}

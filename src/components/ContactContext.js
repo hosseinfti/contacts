@@ -26,7 +26,7 @@ class ContactProvider extends Component {
   }
 
   componentDidMount() {
-    axios.get("http://localhost:8880").then((res) => {
+    axios.get("http://localhost:8888").then((res) => {
       let version = localStorage.getItem("version");
       let data = res.data;
       if (version === data.version) {
@@ -54,13 +54,23 @@ class ContactProvider extends Component {
     localStorage.setItem("contact", JSON.stringify(this.state.contacts));
   }
 
+  // replaceUrl = (i) => {
+  //   debugger;
+  //   let queryStrings = "";
+  //   queryStrings = {
+  //     id: i.id ? i.id : undefined,
+  //   };
+  //   const queryStringsStringify = queryString.stringify(queryStrings);
+  //   this.props.navigate(`?${queryStringsStringify}`);
+  // };
+
   addContactHandler = () => {
     let uniqID = new Date().valueOf();
     let newContact = {
       id: uniqID,
       name: this.state.name,
       family: this.state.family,
-      numbers: [String(this.state.numbers)],
+      numbers: [String(this.state.numbers)], 
     };
     if (!this.state.name || !this.state.family || !this.state.numbers) {
       alert("تمامی فیلد‌ها پر شود");
@@ -164,6 +174,7 @@ class ContactProvider extends Component {
         editNumbers: e.numbers[0],
       };
     });
+    // this.replaceUrl(e);
   };
   contactInfoHandler = (e) => {
     this.setState((prevState) => {
@@ -217,6 +228,7 @@ class ContactProvider extends Component {
   };
 
   render() {
+    const {contacts} = this.state;
     return (
       <ContactContext.Provider
         value={{
@@ -268,7 +280,7 @@ class ContactProvider extends Component {
           editIndexNumbers: this.state.editIndexNumbers,
         }}
       >
-        <Routing />
+       {contacts[0] && <Routing />}
       </ContactContext.Provider>
     );
   }

@@ -3,6 +3,7 @@ import "./itemContact.scss";
 import { Link } from "react-router-dom";
 import ItemInfo from "./itemInfo/ItemInfo";
 
+
 class ItemContact extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +11,7 @@ class ItemContact extends Component {
     
     this.editRef = React.createRef();
   }
-  
+
   render() {
     const { contactEditHandler, searchedContact } = this.props;
     return (
@@ -20,7 +21,7 @@ class ItemContact extends Component {
             <Link
               key={index}
               onClick={() => contactEditHandler(i)}
-              to={`/contacts/user?id=${i.id}`}
+              to={`/contacts/user/${i.id}`}
             >
               <ItemInfo i={i} index={index} />
             </Link>
